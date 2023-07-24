@@ -6,6 +6,8 @@ const routes = require("./src/routes/routes");
 require('dotenv').config({ debug: true });
 const uri = process.env.CONNECTION_STRING;
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+
 
 mongoose.set("strictQuery", true);
 mongoose.connect(uri).then(() => {
@@ -14,9 +16,11 @@ mongoose.connect(uri).then(() => {
     console.log("failed when trying to connect with mongodb.", e);
 });
 
+app.use(express.json())
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
-app.use(express.json());
+
 
 app.use(routes);
 
