@@ -46,5 +46,19 @@ module.exports = {
         
 
         return res.status(200).json(created);
+    },
+
+    async delete(req, res) {
+        const { id } = req.params;
+        const deleted = await Clients.findOneAndRemove({ _id: id });
+       
+        if(deleted) {
+            console.log("Cliente deletado");
+            return res.status(200).json(deleted);
+        };
+        
+
+        return res.status(400).json({ message: "Cliente não encontrado."});
+
     }
 }
