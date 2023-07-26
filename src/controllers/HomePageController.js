@@ -5,12 +5,17 @@ module.exports = {
     async read(req, res) {
         const { username } = req.body;
         const usernameList = await Clients.find({ username: username });
+        const allClients = await Clients.find();
+
+        if(!username) {
+            return res.json(allClients);
+        }
 
         if (usernameList.length == 0) {
-            return res.json({ message: "Não existe usuário com esse nome."});
+            return res.json({message: "Usuário não encontrado!"});
         };
 
-        return res.json(usernameList)
+        return res.json(usernameList);
     },
     
     async create(req, res) {

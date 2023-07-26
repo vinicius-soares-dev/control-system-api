@@ -7,6 +7,7 @@ require('dotenv').config({ debug: true });
 const uri = process.env.CONNECTION_STRING;
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 
 mongoose.set("strictQuery", true);
@@ -15,6 +16,8 @@ mongoose.connect(uri).then(() => {
 }).catch((e) => {
     console.log("failed when trying to connect with mongodb.", e);
 });
+
+app.use(cors());
 
 app.use(express.json())
 
