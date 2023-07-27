@@ -12,7 +12,7 @@ router.get("/", HomeController.read);
 router.post("/", HomeController.read);
 
 router.get("/home", verifyJWT, HomePageController.read);
-router.get("/home/:id", verifyJWT, ClientsController.read);
+router.get("/home/:id", ClientsController.read);
 router.post("/home", verifyJWT, ValidationClients, HomePageController.create);
 router.delete("/home/:id", verifyJWT, HomePageController.delete);
 
