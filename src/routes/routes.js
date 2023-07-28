@@ -14,7 +14,7 @@ router.post("/", HomeController.read);
 router.get("/home", verifyJWT, HomePageController.read);
 router.get("/home/:id", ClientsController.read);
 router.post("/home", ValidationClients, HomePageController.create);
-router.delete("/home/:id", verifyJWT, HomePageController.delete);
+router.delete("/home/:id", HomePageController.delete);
 
 
 
